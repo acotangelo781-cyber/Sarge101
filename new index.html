@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zamboanga del Sur</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <head>
+    <body>
+  <nav class="floating-navbar">
+    <ul>
+      <li><a href="Explore.html" data-tooltip="Explore.html"><i class="fas fa-home"></i></a></li>
+      <li><a href="Places.html" data-tooltip="Places.html"><i class="fas fa-map-marker-alt"></i></a></li>
+      <li><a href="Delicacies.html" data-tooltip="Delicacies.html"><i class="fas fa-utensils"></i></a></li>
+      <li><a href="Log-out.html" data-tooltip="Log-out.html"><i class="fas fa-user"></i></a></li>
+    </ul>
+  </nav>
+  <style>
+    body {
+      "margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #666; /* gray background */
+      color: white;
+      text-align: center;
+    }
+
+    header.hero {
+      padding: 20px;
+    }
+
+    header.hero img {
+      width: 80%;          
+      max-width: 800px;    
+      height: auto;       
+      display: block;      
+      margin: 20px auto;  
+      border-radius: 10px; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4); 
+    }
+
+    @media (max-width: 600px) {
+      header.hero img {
+        width: 95%;       /* mas lapad sa small screen */
+      }"""
+      background: dimgray;
+      color: #fff;
+      font-family: 'Times New Roman', Times, serif, sans-serif;
+      margin: 0.1;
+      padding: 0.1;
+    }
+
+    /* Floating Navbar */
+    .floating-navbar {
+      position: fixed;
+      top: 50px;
+      left: 50;
+      right: 50px;
+      transform: translate(-50, -50);
+      background: rgba(0,0,0,0.6);
+      padding: 20px 30px;
+      border-radius: 50px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.3);
+      z-index: 1000;
+    }
+
+    .floating-navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
+
+    .floating-navbar ul li a {
+      color: #fff;
+      font-size: 22px;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 12px;
+      border: 2px solid #fff;
+      animation: neonGlow 4s infinite alternate;
+      transition: 0.3s ease-in-out;
+      position: relative;
+    }
+
+    .floating-navbar ul li a:hover {
+      transform: scale(1.2) rotate(5deg);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Tooltip */
+    .floating-navbar ul li a::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #000;
+      color: #fff;
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 5px;
+      opacity: 0;
+      white-space: nowrap;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .floating-navbar ul li a:hover::after {
+      opacity: 1;
+    }
+
+    header.hero {
+      text-align: center;
+      padding: 100px 20px 40px;
+    }
+
+    header.hero img {
+      max-width: 300px;
+      margin-top: 20px;
+    }
+
+    .intro {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      font-size: 22px;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .municipalities {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .municipalities h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .mun {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      padding: 0;
+    }
+
+    .mun li {
+      list-style: none;
+    }
+
+    .mun li a {
+      display: block;
+      padding: 12px 20px;
+      font-size: 18px;
+      color: #fff;
+      text-decoration: none;
+      border: 2px solid #fff;
+      border-radius: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-align: center;
+      animation: neonGlow 5s infinite alternate;
+      transition: 0.5s ease-in-out;
+    }
+
+    .mun li a:hover {
+      transform: scale(1.1);
+      background: rgba(255,255,255,0.1);
+    }
+
+    @keyframes neonGlow {
+      0% {
+        box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+        border-color: #ff00ff;
+      }
+      25% {
+        box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff;
+        border-color: #00ffff;
+      }
+      
+    }
+
+    footer.FooterOne {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      background: rgba(255,255,255,0.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating Navbar -->
+  <nav class="floating-navbar">
+    <ul>
+      <li><a href="new index.html.html" data-tooltip="Home"><i class="fas fa-home"></i></a></li>
+      
+      <li><a href="Places.html" data-tooltip="Places"><i class="fas fa-map-marker-alt"></i></a></li>
+      
+      <li><a href="Delicacies.html" data-tooltip="Delicacies"><i class="fas fa-utensils"></i></a></li>
+      
+      <li><a href="Log-out.html" data-tooltip="Log-out"><i class="fas fa-user"></i></a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <h1>Welcome to the Province of Zamboanga del Sur</h1>
+    <img src="Map.png" alt="Zamboanga del Sur Capitol">
+  </header>
+
+  <main>
+    <section class="intro">
+      <p>
+        “Zamboanga del Sur is a province of diverse landscapes and cultural gems, offering visitors a mix of urban charm, natural wonders, and recreational escapes,” Cataluña said. 
+        “These destinations showcase Zamboanga del Sur's commitment to eco-tourism, leisure, and cultural preservation.”
+      </p>
+    </section>
+
+    <!-- MUNICIPALITIES -->
+    <section class="municipalities">
+      <h2>List of Municipalities</h2>
+      <ul class="mun">
+        <li><a href="https://www.facebook.com/ProvincialGovernmentAuroraProvince"><i class="fas fa-landmark"></i> Aurora</a></li>
+        
+        <li><a href="https://www.facebook.com/AbanteBayogZds"><i class="fas fa-tree"></i> Bayog</a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100075923048279"><i class="fas fa-water"></i> Dimataling</a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100066900175008"><i class="fas fa-fish"></i> Dinas</a></li>
+        
+        <li><a href="https://www.facebook.com/GOdreamdumalinao"><i class="fas fa-leaf"></i> Dumalinao</a></li>
+        
+        <li><a href="https://www.facebook.com/DumingagLGUTourism"><i class="fas fa-mountain"></i> Dumingag</a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100093843625153"><i class="fas fa-place-of-worship"></i> Guipos</a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=61579358300030"><i class="fas fa-archway"></i> Josefina</a></li>
+        
+        <li><a href="https://www.facebook.com/arangkadakumalarang"><i class="fas fa-spa"></i> Kumalarang</a></li>
+        
+        <li><a href="https://www.facebook.com/LabanganRHU"><i class="fas fa-stethoscope"></i> Labangan</a></li>
+        
+        <li><a href="https://www.facebook.com/LakeWood.Zambo.Sur"><i class="fas fa-water-ladder"></i> Lakewood</a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=61553738266499"><i class="fas fa-ship"></i> Lapuyan</a></li>
+        
+        <li><a href="https://www.facebook.com/EribertaSpringResortMahayagZds"><i class="fas fa-hotel"></i> Mahayag</a></li>
+        
+        <li><a href="https://www.facebook.com/IGMATMargosatubigZamboangaDelSur"><i class="fas fa-anchor"></i> Margosatubig</a></li>
+        
+        <li><a href="https://www.facebook.com/MIFAMCO"><i class="fas fa-seedling"></i> Midsalip</a></li>
+        
+        <li><a href="https://www.facebook.com/pesomolave"><i class="fas fa-store"></i> Molave</a></li>
+        
+        <li><a href="https://www.facebook.com/localgovernmentunitofpitogo"><i class="fas fa-umbrella-beach"></i> Pitogo</a></li>
+        
+        <li><a href="https://www.facebook.com/lguramonmagsaysayzds"><i class="fas fa-flag"></i> Ramon Magsaysay</a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100063841329000"><i class="fas fa-sun"></i> San Miguel</a></li>
+        
+        <li><a href="https://www.facebook.com/SanPabloMAgO"><i class="fas fa-church"></i> San Pablo</a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100063714194246"><i class="fas fa-tree-city"></i> Suminot</a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100070721264845"><i class="fas fa-map-signs"></i> Tabina</a></li>
+        
+        <li><a href="https://www.facebook.com/profile.php?id=100094266662159"><i class="fas fa-drum"></i> Tambulig</a></li>
+        
+        <li><a href=""><i class="fas fa-drum"></i> Tukuran</a></li>
+        
+        <li><a href="https://www.facebook.com/IgmatTigbao"><i class="fas fa-cow"></i> Tigbao</a></li>
+        
+        <li><a href=https://facebook.com/groups/2493205614265545/"><i class="fas fa-people-group"></i> Vincenzo A. Sagun</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="FooterOne">
+    <p>&copy; Prepared by: Angelo Acot</p>
+  </footer>
+</body>
+</html>
