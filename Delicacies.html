@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delicacies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ccc; /* gray background */
+      color: #222;
+    }
+
+    /* Navbar */
+    .floating-navbar {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.8);
+      padding: 10px 25px; /* ✅ Fixed padding */
+      border-radius: 30px;
+      z-index: 1000;
+    }
+    .floating-navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 50px;
+      margin: 0;
+      padding: 0;
+    }
+    .floating-navbar a {
+      color: #fff;
+      font-size: 22px;
+      text-decoration: none;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .floating-navbar a:hover {
+      color: #f1c40f;
+      transform: scale(1.2);
+    }
+
+    /* Sections */
+    section {
+      text-align: center;
+      padding: 60px 20px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease-out;
+    }
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section img {
+      width: 350px;
+      height: auto;
+      border-radius: 12px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    section img:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease;
+      z-index: 2000;
+    }
+    .overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    .overlay img {
+      max-width: 95%; /* ✅ Dili na full screen */
+      max-height: 95%;
+      border-radius: 14px;
+      box-shadow: 0 9px 25px rgba(0,0,0,0.5);
+      transform: scale(0.7);
+      transition: transform 0.4s ease;
+    }
+    .overlay.show img {
+      transform: scale(1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      background: #222;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="floating-navbar">
+    <ul>
+      <li><a href="new index.html"><i class="fas fa-home"></i></a></li>
+      <li><a href="Places.html"><i class="fas fa-map-marker-alt"></i></a></li>
+      <li><a href="Delicacies.html"><i class="fas fa-utensils"></i></a></li>
+      <li><a href="Log-out.html"><i class="fas fa-user"></i></a></li>
+    </ul>
+  </nav>
+
+  <!-- Sections -->
+  <section>
+    <h1>Curacha with Alavar Sauce</h1>
+    <img src="images (39).jpeg" class="photo">
+    <p>This dish features spanner crab cooked in a creamy coconut-based Alavar sauce made with crab roe, garlic, ginger, and spices.</p>
+  </section>
+
+  <section>
+    <h2>Tiyula Itum</h2>
+    <img src="images (40).jpeg" class="photo">
+    <p>A traditional Tausug black soup made from beef or goat, flavored with lemongrass and roasted coconut.</p>
+  </section>
+
+  <section>
+    <h3>Beef and Chicken Satti</h3>
+    <img src="images (41).jpeg" class="photo">
+    <p>Grilled skewers of marinated meat paired with sticky rice cubes and served with sweet and spicy sauce.</p>
+  </section>
+
+  <section>
+    <h4>Chavacano Paella</h4>
+    <img src="images (42).jpeg" class="photo">
+    <p>Local paella with turmeric-colored rice, seafood, chicken, chorizo, and vegetables.</p>
+  </section>
+
+  <section>
+    <h5>Lokot-Lokot (Lukot-Lukot)</h5>
+    <img src="lokot-lokot.jpg" class="photo">
+    <p>A crispy Tausug delicacy made from glutinous rice flour fried into crunchy mats.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; Prepared by: Angelo Acot
+  </footer>
+
+  <!-- Script -->
+  <script>
+    // Scroll animation
+    const sections = document.querySelectorAll("section");
+    window.addEventListener("scroll", () => {
+      const trigger = window.innerHeight * 0.85; // ✅ Corrected trigger
+      sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if (top < trigger) {
+          sec.classList.add("show");
+          sec.style.animation = "fadeInUp 0.8s ease";
+        }
+      });
+    });
+
+    // Click to zoom with overlay
+    const photos = document.querySelectorAll(".photo");
+    const overlay = document.createElement("div");
+    overlay.classList.add("overlay");
+    overlay.innerHTML = `<img src="" alt="zoomed">`;
+    document.body.appendChild(overlay);
+
+    const overlayImg = overlay.querySelector("img");
+
+    photos.forEach(photo => {
+      photo.addEventListener("click", () => {
+        overlayImg.src = photo.src;
+        overlay.classList.add("show");
+      });
+    });
+
+    overlay.addEventListener("click", () => {
+      overlay.classList.remove("show");
+    });
+  </script>
+</body>
+</html>

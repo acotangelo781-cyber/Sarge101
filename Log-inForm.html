@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Register</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 10px;
+    }
+
+    .container {
+      position: relative;
+      background: rgba(255, 255, 255, 0.15); 
+      backdrop-filter: blur(15px);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0px 8px 25px rgba(0,0,0,0.3);
+      width: 80%;
+      height:50%;
+      max-width: 300px;
+      text-align: center;
+      animation: fadeIn 1s ease;
+      display: flex;
+      justify-content: center;
+      flex-direction: column; 
+      transition: height 0.5s ease; 
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 26px;
+      color: #fff;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .input-group {
+      position: relative;
+      margin: 15px 0;
+    }
+    .input-group input {
+      width: 70%;
+      padding: 14px 50px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    .icon {
+      position: absolute;
+      top: 50%;
+      left: 14px;
+      transform: translateY(-50%);
+      font-size: 18px;
+    }
+    .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 14px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0px 8px 20px rgba(0,114,255,0.5);
+    }
+
+    .spinner {
+      border: 3px solid rgba(255,255,255,0.3);
+      border-top: 3px solid #fff;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      animation: spin 1s linear infinite;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: none;
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .toggle-text {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #eee;
+    }
+    .toggle-text a {
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: color 0.3s;
+    }
+    .toggle-text a:hover {
+      color: #ffd700;
+    }
+
+    .flash {
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      font-size: 14px;
+      animation: slideDown 0.4s ease;
+    }
+    .flash.success { background: #d4edda; color: #155724; }
+    .flash.error { background: #f8d7da; color: #721c24; }
+
+    .hidden { display: none; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn.success {
+      background-color: #28a745 !important;
+      color: #fff;
+    }
+    .btn.success::after {
+      content: '✔';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20px;
+      opacity: 0;
+      animation: checkFade 0.5s forwards;
+    }
+
+    @media (max-width: 480px) {
+      h2 { font-size: 22px; }
+      .btn { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div id="flashBox"></div>
+
+    <div id="loginForm">
+      <h2>🔐 Login</h2>
+      <div class="input-group">
+        <span class="icon">👤</span>
+        <input type="text" id="loginUser" placeholder="Enter Username" required>
+      </div>
+      <div class="input-group">
+        <span class="icon">🔒</span>
+        <input type="password" id="loginPassword" placeholder="Enter Password" required>
+        <span class="toggle-password" onclick="togglePassword('loginPassword', this)">👁️</span>
+      </div>
+      <button class="btn" id="loginBtn" onclick="login()">Login
+        <div class="spinner" id="loginSpinner"></div>
+      </button>
+      <p class="toggle-text">Don’t have an account? <a onclick="showRegister()">Create Account</a></p>
+    </div>
+
+    <div id="registerForm" class="hidden">
+      <h2>📝 Register</h2>
+      <div class="input-group">
+        <span class="icon">👤</span>
+        <input type="text" id="regUser" placeholder="Enter Username" required>
+      </div>
+      <div class="input-group">
+        <span class="icon">📧</span>
+        <input type="email" id="regEmail" placeholder="Enter Email" required>
+      </div>
+      <div class="input-group">
+        <span class="icon">🔒</span>
+        <input type="password" id="regPassword" placeholder="Enter Password" required>
+        <span class="toggle-password" onclick="togglePassword('regPassword', this)">👁️</span>
+      </div>
+      <div class="input-group">
+        <span class="icon">✅</span>
+        <input type="password" id="regConfirm" placeholder="Confirm Password" required>
+        <span class="toggle-password" onclick="togglePassword('regConfirm', this)">👁️</span>
+      </div>
+      <button class="btn" id="registerBtn" onclick="register()">Register
+        <div class="spinner" id="registerSpinner"></div>
+      </button>
+      <p class="toggle-text">Already have an account? <a onclick="showLogin()">Login</a></p>
+    </div>
+
+  </div>
+
+  <script>
+    function togglePassword(id, el) {
+      const field = document.getElementById(id);
+      if (field.type === "password") {
+        field.type = "text";
+        el.textContent = "🙈";
+      } else {
+        field.type = "password";
+        el.textContent = "👁️";
+      }
+    }
+
+    function showRegister() {
+      document.getElementById("loginForm").classList.add("hidden");
+      document.getElementById("registerForm").classList.remove("hidden");
+    }
+
+    function showLogin() {
+      document.getElementById("registerForm").classList.add("hidden");
+      document.getElementById("loginForm").classList.remove("hidden");
+    }
+
+    function flashMessage(message, type) {
+      const flashBox = document.getElementById("flashBox");
+      flashBox.innerHTML = `<div class="flash ${type}">${message}</div>`;
+      setTimeout(() => { flashBox.innerHTML = ""; }, 3000);
+    }
+
+    function handleButton(btn, spinner, callback) {
+      spinner.style.display = "block";
+      btn.disabled = true;
+      btn.style.opacity = 0.7;
+
+      setTimeout(() => {
+        spinner.style.display = "none";
+        btn.disabled = false;
+        btn.style.opacity = 1;
+        btn.classList.add('success');
+        setTimeout(() => { btn.classList.remove('success'); callback(); }, 800);
+      }, 1500);
+    }
+
+    function login() {
+      const user = document.getElementById("loginUser").value;
+      const pass = document.getElementById("loginPassword").value;
+      const btn = document.getElementById("loginBtn");
+      const spinner = document.getElementById("loginSpinner");
+
+      if (!user || !pass) {
+        flashMessage("⚠️ Please fill all fields!", "error");
+        return;
+      }
+
+      handleButton(btn, spinner, () => {
+        flashMessage("✅ Login successful (Congrats)!", "success");
+
+        // ✅ Redirect to homepage
+        setTimeout(() => {
+          window.location.href = "Explore.html";
+        }, 1200);
+      });
+    }
+
+    function register() {
+      const user = document.getElementById("regUser").value;
+      const email = document.getElementById("regEmail").value;
+      const pass = document.getElementById("regPassword").value;
+      const confirm = document.getElementById("regConfirm").value;
+      const btn = document.getElementById("registerBtn");
+      const spinner = document.getElementById("registerSpinner");
+
+      if (!user || !email || !pass || !confirm) {
+        flashMessage("⚠️ Please fill all fields!", "error");
+        return;
+      }
+      if (pass !== confirm) {
+        flashMessage("⚠️ Passwords do not match!", "error");
+        return;
+      }
+
+      handleButton(btn, spinner, () => {
+        flashMessage("🎉 Registration successful (demo only)!", "success");
+        showLogin();
+      });
+    }
+  </script>
+</body>
+</html>
